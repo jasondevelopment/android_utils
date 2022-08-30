@@ -5,13 +5,7 @@ import android.view.View;
 
 import com.jason.utils.toast_util.config.IToastStyle;
 
-/**
- * DES:
- * <p>
- * Date: 2022/8/30  14:40
- *
- * @author Jason
- */
+
 public class LocationToastStyle implements IToastStyle<View> {
     private final IToastStyle<?> mStyle;
     private final int mGravity;

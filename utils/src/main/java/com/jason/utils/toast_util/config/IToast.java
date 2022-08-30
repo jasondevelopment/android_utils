@@ -4,13 +4,7 @@ import android.annotation.SuppressLint;
 import android.view.View;
 import android.widget.TextView;
 
-/**
- * DES:
- * <p>
- * Date: 2022/8/30  14:32
- *
- * @author Jason
- */
+
 public interface IToast {
 
     void show();

@@ -2,13 +2,7 @@ package com.jason.utils.toast_util.config;
 
 import android.app.Application;
 
-/**
- * DES:
- * <p>
- * Date: 2022/8/30  14:35
- *
- * @author Jason
- */
+
 public interface IToastStrategy {
 
     void registerStrategy(Application var1);

@@ -7,13 +7,7 @@ import android.view.ViewGroup;
 
 import com.jason.utils.toast_util.config.IToastStyle;
 
-/**
- * DES:
- * <p>
- * Date: 2022/8/30  14:41
- *
- * @author Jason
- */
+
 public class ViewToastStyle implements IToastStyle<View> {
     private final int mLayoutId;
     private final IToastStyle<?> mStyle;

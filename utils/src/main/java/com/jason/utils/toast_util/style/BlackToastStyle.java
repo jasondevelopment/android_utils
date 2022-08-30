@@ -11,13 +11,6 @@ import android.widget.TextView;
 
 import com.jason.utils.toast_util.config.IToastStyle;
 
-/**
- * DES:
- * <p>
- * Date: 2022/8/30  14:37
- *
- * @author Jason
- */
 public class BlackToastStyle implements IToastStyle<TextView> {
     public BlackToastStyle() {
     }

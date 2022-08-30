@@ -3,13 +3,7 @@ package com.jason.utils.toast_util.config;
 import android.content.Context;
 import android.view.View;
 
-/**
- * DES:
- * <p>
- * Date: 2022/8/30  14:36
- *
- * @author Jason
- */
+
 public interface IToastStyle<V extends View> {
     V createView(Context var1);
 

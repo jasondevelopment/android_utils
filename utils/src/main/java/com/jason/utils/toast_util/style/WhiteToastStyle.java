@@ -6,13 +6,7 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.util.TypedValue;
 
-/**
- * DES:
- * <p>
- * Date: 2022/8/30  14:41
- *
- * @author Jason
- */
+
 public class WhiteToastStyle extends BlackToastStyle {
     public WhiteToastStyle() {
     }
