@@ -5,8 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Application;
 import android.os.Bundle;
 
-import com.jason.utils.resources_util.generator.DimenGenerator;
 import com.jason.utils.toast_util.ToastUtils;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,6 +20,6 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.tv).setOnClickListener(view -> ToastUtils.showToast("哈哈哈哈"));
 
-        DimenGenerator.main(new String[]{});
+//        DimenGenerator.main(new String[]{});
     }
 }

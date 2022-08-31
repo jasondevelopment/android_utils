@@ -1,6 +1,6 @@
-package com.jason.utils.resources_util;
+package com.jason.common_resources;
 
-import com.jason.utils.resources_util.constants.DimenTypes;
+import com.jason.common_resources.constants.DimenTypes;
 
 import java.io.File;
 import java.io.FileNotFoundException;

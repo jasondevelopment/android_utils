@@ -1,4 +1,4 @@
-package com.jason.utils.resources_util.constants;
+package com.jason.common_resources.constants;
 
 public enum DimenTypes {
     DP_sw__360(360),

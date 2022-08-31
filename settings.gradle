@@ -1,3 +1,4 @@
 rootProject.name = "android_utils"
 include ':app'
 include ':utils'
+include ':generate_resources'
