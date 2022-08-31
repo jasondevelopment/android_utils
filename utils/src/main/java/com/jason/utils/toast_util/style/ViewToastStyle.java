@@ -1,6 +1,7 @@
 package com.jason.utils.toast_util.style;
 
 import android.content.Context;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +23,7 @@ public class ViewToastStyle implements IToastStyle<View> {
     }
 
     public int getGravity() {
-        return this.mStyle == null ? 17 : this.mStyle.getGravity();
+        return this.mStyle == null ? Gravity.CENTER : this.mStyle.getGravity();
     }
 
     public int getXOffset() {

@@ -1,9 +1,12 @@
 package com.jason.utils.toast_util;
 
 import android.app.Activity;
+import android.content.Context;
+import android.graphics.PixelFormat;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.jason.utils.toast_util.config.IToast;
 
@@ -18,11 +21,13 @@ final class ToastImpl {
     private final Runnable mShowRunnable = new Runnable() {
         public void run() {
             WindowManager.LayoutParams params = new WindowManager.LayoutParams();
-            params.height = -2;
-            params.width = -2;
-            params.format = -3;
-            params.windowAnimations = 16973828;
-            params.flags = 152;
+            params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+            params.width = WindowManager.LayoutParams.WRAP_CONTENT;
+            params.format = PixelFormat.TRANSLUCENT;
+            params.windowAnimations = android.R.style.Animation_Toast;
+            params.flags = WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
+                    | WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE
+                    | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE;
             params.packageName = ToastImpl.this.mPackageName;
             params.gravity = ToastImpl.this.mToast.getGravity();
             params.x = ToastImpl.this.mToast.getXOffset();
@@ -36,7 +41,7 @@ final class ToastImpl {
                     return;
                 }
 
-                WindowManager manager = (WindowManager)activity.getSystemService("window");
+                WindowManager manager = (WindowManager) activity.getSystemService(Context.WINDOW_SERVICE);
                 if (manager == null) {
                     return;
                 }
@@ -44,7 +49,7 @@ final class ToastImpl {
                 manager.addView(ToastImpl.this.mToast.getView(), params);
                 ToastImpl.HANDLER.postDelayed(() -> {
                     ToastImpl.this.cancel();
-                }, ToastImpl.this.mToast.getDuration() == 1 ? 3500L : 2000L);
+                }, ToastImpl.this.mToast.getDuration() == Toast.LENGTH_LONG ? LONG_DURATION_TIMEOUT : SHORT_DURATION_TIMEOUT);
                 ToastImpl.this.setShow(true);
                 ToastImpl.this.mWindowLifecycle.register(ToastImpl.this);
             } catch (WindowManager.BadTokenException | IllegalStateException var4) {
@@ -61,7 +66,7 @@ final class ToastImpl {
                     return;
                 }
 
-                WindowManager manager = (WindowManager)activity.getSystemService("window");
+                WindowManager manager = (WindowManager) activity.getSystemService(Context.WINDOW_SERVICE);
                 if (manager == null) {
                     return;
                 }

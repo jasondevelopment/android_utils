@@ -12,14 +12,14 @@ public class WhiteToastStyle extends BlackToastStyle {
     }
 
     protected int getTextColor(Context context) {
-        return -1157627904;
+        return 0XBB000000;
     }
 
     @SuppressLint("WrongConstant")
     protected Drawable getBackgroundDrawable(Context context) {
         GradientDrawable drawable = new GradientDrawable();
-        drawable.setColor(-1381654);
-        drawable.setCornerRadius(TypedValue.applyDimension(1, 8.0F, context.getResources().getDisplayMetrics()));
+        drawable.setColor(0XFFEAEAEA);
+        drawable.setCornerRadius(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 8.0F, context.getResources().getDisplayMetrics()));
         return drawable;
     }
 }

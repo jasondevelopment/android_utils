@@ -54,7 +54,7 @@ final class WindowLifecycle implements Application.ActivityLifecycleCallbacks {
     void register(ToastImpl impl) {
         this.mToastImpl = impl;
         if (this.mActivity != null) {
-            if (Build.VERSION.SDK_INT >= 29) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 this.mActivity.registerActivityLifecycleCallbacks(this);
             } else {
                 this.mActivity.getApplication().registerActivityLifecycleCallbacks(this);
@@ -66,7 +66,7 @@ final class WindowLifecycle implements Application.ActivityLifecycleCallbacks {
     void unregister() {
         this.mToastImpl = null;
         if (this.mActivity != null) {
-            if (Build.VERSION.SDK_INT >= 29) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 this.mActivity.unregisterActivityLifecycleCallbacks(this);
             } else {
                 this.mActivity.getApplication().unregisterActivityLifecycleCallbacks(this);

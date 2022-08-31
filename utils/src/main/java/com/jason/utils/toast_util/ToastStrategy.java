@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.widget.Toast;
 
 import com.jason.utils.toast_util.config.IToast;
 import com.jason.utils.toast_util.config.IToastStrategy;
@@ -40,42 +41,42 @@ public class ToastStrategy extends Handler implements IToastStrategy {
         Object toast;
         if (resumedActivity != null) {
             toast = new ActivityToast(resumedActivity);
-        } else if (Build.VERSION.SDK_INT == 25) {
+        } else if (Build.VERSION.SDK_INT == Build.VERSION_CODES.N_MR1) {
             toast = new SafeToast(application);
         } else {
             toast = new SystemToast(application);
         }
 
-        if (toast instanceof ActivityToast || Build.VERSION.SDK_INT < 30 || application.getApplicationInfo().targetSdkVersion < 30) {
-            ((IToast)toast).setView(this.mToastStyle.createView(application));
-            ((IToast)toast).setGravity(this.mToastStyle.getGravity(), this.mToastStyle.getXOffset(), this.mToastStyle.getYOffset());
-            ((IToast)toast).setMargin(this.mToastStyle.getHorizontalMargin(), this.mToastStyle.getVerticalMargin());
+        if (toast instanceof ActivityToast || Build.VERSION.SDK_INT < Build.VERSION_CODES.R || application.getApplicationInfo().targetSdkVersion < Build.VERSION_CODES.R) {
+            ((IToast) toast).setView(this.mToastStyle.createView(application));
+            ((IToast) toast).setGravity(this.mToastStyle.getGravity(), this.mToastStyle.getXOffset(), this.mToastStyle.getYOffset());
+            ((IToast) toast).setMargin(this.mToastStyle.getHorizontalMargin(), this.mToastStyle.getVerticalMargin());
         }
 
-        return (IToast)toast;
+        return (IToast) toast;
     }
 
     public void showToast(CharSequence text) {
         Message msg = Message.obtain();
-        msg.what = 1;
+        msg.what = TYPE_SHOW;
         msg.obj = text;
-        this.sendMessageDelayed(msg, 200L);
+        this.sendMessageDelayed(msg, DELAY_TIMEOUT);
     }
 
     public void cancelToast() {
-        this.sendEmptyMessage(2);
+        this.sendEmptyMessage(TYPE_CANCEL);
     }
 
     public void handleMessage(Message msg) {
         IToast toast = null;
         if (this.mToastReference != null) {
-            toast = (IToast)this.mToastReference.get();
+            toast = (IToast) this.mToastReference.get();
         }
 
-        switch(msg.what) {
-            case 1:
+        switch (msg.what) {
+            case TYPE_SHOW:
                 if (msg.obj instanceof CharSequence) {
-                    CharSequence text = (CharSequence)msg.obj;
+                    CharSequence text = (CharSequence) msg.obj;
                     if (toast != null) {
                         toast.cancel();
                     }
@@ -87,7 +88,7 @@ public class ToastStrategy extends Handler implements IToastStrategy {
                     toast.show();
                 }
                 break;
-            case 2:
+            case TYPE_CANCEL:
                 if (toast != null) {
                     toast.cancel();
                 }
@@ -96,6 +97,6 @@ public class ToastStrategy extends Handler implements IToastStrategy {
     }
 
     protected int getDuration(CharSequence text) {
-        return text.length() > 20 ? 1 : 0;
+        return text.length() > 20 ? Toast.LENGTH_LONG : Toast.LENGTH_SHORT;
     }
 }

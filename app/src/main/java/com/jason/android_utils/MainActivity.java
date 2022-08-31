@@ -20,6 +20,5 @@ public class MainActivity extends AppCompatActivity {
 
         findViewById(R.id.tv).setOnClickListener(view -> ToastUtils.showToast("哈哈哈哈"));
 
-//        DimenGenerator.main(new String[]{});
     }
 }
